@@ -1,11 +1,11 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
-require "vs_rails/version"
+require "vigilion-rails/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "vs_rails"
+  s.name        = "vigilion-rails"
   s.version     = VigilionRails::VERSION
   s.authors     = ["Bit Zesty Ltd"]
   s.email       = ["info@bitzesty.com"]
