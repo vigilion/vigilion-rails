@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  post "/callback", to: "scans#callback"
+  post "/vigilion/callback", to: "scans#callback"
 end
