@@ -1,4 +1,4 @@
 require "vs_rails/engine"
 
-module VsRails
+module VigilionRails
 end

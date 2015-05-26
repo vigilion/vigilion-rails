@@ -1,7 +1,7 @@
 require 'test_helper'
 
-class VsRailsTest < ActiveSupport::TestCase
+class VigilionRailsTest < ActiveSupport::TestCase
   test "truth" do
-    assert_kind_of Module, VsRails
+    assert_kind_of Module, VigilionRails
   end
 end

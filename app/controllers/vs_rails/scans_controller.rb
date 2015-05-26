@@ -1,4 +1,4 @@
-class VsRails::ScansController < ApplicationController
+class VigilionRails::ScansController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_filter :get_scan_id
 

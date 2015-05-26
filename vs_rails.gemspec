@@ -6,7 +6,7 @@ require "vs_rails/version"
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = "vs_rails"
-  s.version     = VsRails::VERSION
+  s.version     = VigilionRails::VERSION
   s.authors     = ["Bit Zesty Ltd"]
   s.email       = ["info@bitzesty.com"]
   s.homepage    = "https://github.com/bitzesty/vs-rails"

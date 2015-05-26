@@ -1,4 +1,4 @@
-module VsRails
+module VigilionRails
   module ApplicationHelper
   end
 end
