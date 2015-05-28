@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Bit Zesty Ltd"]
   s.email       = ["info@bitzesty.com"]
   s.homepage    = "https://github.com/bitzesty/vs-rails"
-  s.summary     = "Rails engine for Virus Scanner."
-  s.description = "Rails engine for BitZesty's Virus Scanner service."
+  s.summary     = "Rails engine for Vigilion Scanner."
+  s.description = "Rails engine for BitZesty's Vigilion - Virus Scanner service."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
@@ -19,6 +19,4 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "4.2.0"
   s.add_dependency "virus-scanner", "~> 0.0.5"
-
-  s.add_development_dependency "sqlite3"
 end
