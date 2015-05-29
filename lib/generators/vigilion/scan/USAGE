@@ -1,0 +1,7 @@
+Description:
+    Generates a migration to prepare the database schema to support virus scanning for a particular model.
+
+Example:
+    rails generate scan Model attachment
+
+    This will create a migration which adds a `attachment_scan_results' column to `models' table.
