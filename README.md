@@ -34,11 +34,18 @@ rails generate vigilion:scan Model attachment
 
 Replace `Model` with the class name which contains the attachment. And replace `attachment` with your particular file column.
 
-## Models and callbacks
+## Manually triggered scans
 
 Supposing you have an attribute called `attachment` in your model:
 To scan a file, just call `model.scan_attachment!`.
 When the scan finishes, `model.attachment_scan_results` will be updated.
+
+## Integrations
+
+vigilion-rails provides carrierwave and paperclip integration out-of-the-box.
+That means that simply adding the `scan_file` command to your model, each time a new file is uploaded, a scanning process will be automatically scheduled.
+
+## Models and callbacks
 
 Vigilion creates an `on_scan_attachment` callback in your model which
 updates the column `attachment_scan_results` column.
