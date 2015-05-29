@@ -1,9 +1,9 @@
-# Vigilion
+# Vigilion Rails
 Rails engine for Vigilion - Virus Scanning Service
 
 ## Getting started
 
-You can add it to your Gemfile with:
+You can add Vigilion Rails to your Gemfile with:
 
 ```ruby
 gem 'vigilion-rails'
@@ -33,3 +33,17 @@ rails generate vigilion:scan Model attachment
 ```
 
 Replace `Model` with the class name which contains the attachment. And replace `attachment` with your particular file column.
+
+## Models and callbacks
+
+Vigilion will create an `on_scan_attachment` callback in your model which
+updates the column `attachment_scan_results` column.
+
+You can override the scan results column with:
+
+```ruby
+  scan_file :attachment, scan_column: "any_column_name"
+```
+
+But you can also replace the `on_scan_attachment` method of your model entirely.
+In that case, you have to implement the logic to store the scan results.
