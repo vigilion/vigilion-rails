@@ -1,4 +1,4 @@
-  # Vigilion
+# Vigilion
 Rails engine for Vigilion - Virus Scanning Service
 
 ## Getting started
