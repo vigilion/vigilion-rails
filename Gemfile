@@ -11,6 +11,10 @@ gemspec
 # your gem to rubygems.org.
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
-gem 'carrierwave'
 
+# dummy app dependencies:
+gem 'carrierwave'
+gem 'paperclip'
+
+# remove after deploying:
 gem "vigilion", git: "https://github.com/bitzesty/vigilion-ruby"

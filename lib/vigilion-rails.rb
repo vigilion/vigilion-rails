@@ -21,6 +21,15 @@ module VigilionRails
 
         # carrierwave callback
         alias_method :store_#{column}!, :scan_#{column}!
+
+        #paperclip callback
+        after_save :check_scan_#{column}
+
+        def check_scan_#{column}
+          if respond_to?(:#{column}_updated_at) && #{column}_updated_at_changed?
+            scan_#{column}!
+          end
+        end
       RUBY
     end
   end
