@@ -13,4 +13,4 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 gem 'carrierwave'
 
-gem "vigilion", path: "../vigilion-ruby"
+gem "vigilion", git: "https://github.com/bitzesty/vigilion-ruby"

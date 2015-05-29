@@ -1,16 +1,17 @@
+GIT
+  remote: https://github.com/bitzesty/vigilion-ruby
+  revision: 99992007e8c66d74f6f17c22be12466db630a490
+  specs:
+    vigilion (0.1.0)
+      faraday
+      faraday_middleware
+
 PATH
   remote: .
   specs:
     vigilion-rails (0.0.7)
       rails (~> 4.2.0)
-      vigilion
-
-PATH
-  remote: ../vigilion-ruby
-  specs:
-    vigilion (0.0.5)
-      faraday
-      faraday_middleware
+      vigilion (~> 0.1.0)
 
 GEM
   remote: https://rubygems.org/
