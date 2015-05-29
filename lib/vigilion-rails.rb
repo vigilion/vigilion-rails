@@ -8,16 +8,19 @@ module VigilionRails
       options = default.merge(options)
 
       class_eval <<-RUBY, __FILE__, __LINE__+1
+
+        def scan_#{column}!
+          key = { model: self.class.name, column: '#{column}', id: id }.to_json
+          Vigilion::File.scan_url(key, #{column})
+        end
+
         # Vigilion callback
         def on_scan_#{column} params
           update_attribute('#{options[:scan_column]}', params[:status])
         end
 
         # carrierwave callback
-        def store_#{column}!
-          key = { model: self.class.name, column: '#{column}', id: id }.to_json
-          Vigilion::File.scan_url(key, #{column})
-        end
+        alias_method :store_#{column}!, :scan_#{column}!
       RUBY
     end
   end

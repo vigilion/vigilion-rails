@@ -36,6 +36,10 @@ Replace `Model` with the class name which contains the attachment. And replace `
 
 ## Models and callbacks
 
+Supposing you have an attribute called `attachment` in your model:
+To scan a file, just call `model.scan_attachment!`.
+When the scan finishes, `model.attachment_scan_results` will be updated.
+
 Vigilion creates an `on_scan_attachment` callback in your model which
 updates the column `attachment_scan_results` column.
 
@@ -45,5 +49,5 @@ You can override the scan results column with:
   scan_file :attachment, scan_column: "any_column_name"
 ```
 
-But you can also replace entirely the `on_scan_attachment` method in your model.
+You can also replace entirely the `on_scan_attachment` method in your model.
 In that case, you have to implement the logic to handle the scan results.
