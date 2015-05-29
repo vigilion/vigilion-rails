@@ -1,5 +1,5 @@
 = VigilionRails
 
-Rails engine for Virus Scanning API
+Rails engine for Vigilion - Virus Scanning Service
 
 MIT-LICENSE.

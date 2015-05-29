@@ -12,7 +12,7 @@ module VigilionRails
         # carrierwave callback
         def store_#{column}!
           #{options[:scan_column]} = 'pending'
-          ::VirusScanner::File.scan_url('FIXTHIS', 'FIXTHIS')
+          Vigilion::File.scan_url('FIXTHIS', 'FIXTHIS')
         end
       RUBY
     end

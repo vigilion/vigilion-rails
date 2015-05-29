@@ -11,14 +11,14 @@ Gem::Specification.new do |s|
   s.email       = ["info@bitzesty.com"]
   s.homepage    = "https://github.com/bitzesty/vs-rails"
   s.summary     = "Rails engine for Vigilion Scanner."
-  s.description = "Rails engine for BitZesty's Vigilion - Virus Scanner service."
+  s.description = "Rails engine for BitZesty's Vigilion - Virus Scanning service."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", "~> 4.2.0"
-  s.add_dependency "virus-scanner", "~> 0.0.5"
+  s.add_dependency "vigilion"
 
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'factory_girl_rails'

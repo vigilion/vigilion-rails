@@ -12,3 +12,5 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 gem 'carrierwave'
+
+gem "vigilion", path: "../vigilion-ruby"
