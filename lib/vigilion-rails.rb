@@ -8,9 +8,10 @@ module VigilionRails
       options = default.merge(options)
 
       class_eval <<-RUBY, __FILE__, __LINE__+1
-
-        @@vigilion_mappings ||= Hash.new
-        @@vigilion_mappings['#{column}'] = '#{options[:scan_column]}'
+        # Vigilion callback
+        def on_scan_#{column} params
+          update_attribute('#{options[:scan_column]}', params[:status])
+        end
 
         # carrierwave callback
         def store_#{column}!

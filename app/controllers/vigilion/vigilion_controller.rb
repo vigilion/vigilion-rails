@@ -3,11 +3,10 @@ class Vigilion::VigilionController < ActionController::Base
 
   def callback
     identity = JSON.parse(params[:uuid])
-    klass = identity["model"].constantize
-    model = klass.find(identity["id"])
-    mapping = klass.class_variable_get(:@@vigilion_mappings)[identity["column"]]
-    if mapping.present? && model.respond_to?(mapping)
-      model.update_attribute(mapping, params[:status])
+    model = identity["model"].constantize.find(identity["id"])
+    on_scan = "on_scan_#{identity["column"]}"
+    if model.present? && model.respond_to?(on_scan)
+      model.send(on_scan, params)
     end
     head :ok
   end
