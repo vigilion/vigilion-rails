@@ -18,7 +18,7 @@ rails generate vigilion:install
 ```
 
 The generator will install an initializer which describes Vigilion configuration options.
-You need to replace the default APIKEY with the one you obtained in http://vigilion.com/
+You need to set the api key with the value you obtained in http://vigilion.com/
 
 To add a new file to be scanned simply specify the name of the column in your model:
 
