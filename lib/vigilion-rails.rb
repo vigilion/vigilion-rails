@@ -11,7 +11,7 @@ module VigilionRails
 
         def scan_#{column}!
           key = { model: self.class.name, column: '#{column}', id: id }.to_json
-          Vigilion::File.scan_url(key, #{column})
+          Vigilion.scan_url(key, #{column})
         end
 
         # Vigilion callback
