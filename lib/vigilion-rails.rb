@@ -11,22 +11,25 @@ module VigilionRails
 
         def scan_#{column}!
           key = { model: self.class.name, column: '#{column}', id: id }.to_json
-          Vigilion.scan_url(key, #{column})
+          Vigilion.scan_url(key, #{column}.url)
+          return true
         end
 
-        # Vigilion callback
+        # Vigilion service callback
         def on_scan_#{column} params
           update_attribute('#{options[:scan_column]}', params[:status])
+          @#{column}_old_url = #{column}.url
         end
 
-        # carrierwave callback
-        alias_method :store_#{column}!, :scan_#{column}!
-
-        #paperclip callback
+        after_initialize :remember_#{column}_url
         after_save :check_scan_#{column}
 
+        def remember_#{column}_url
+          @#{column}_old_url = #{column}.url
+        end
+
         def check_scan_#{column}
-          if respond_to?(:#{column}_updated_at) && #{column}_updated_at_changed?
+          if @#{column}_old_url != #{column}.url
             scan_#{column}!
           end
         end
