@@ -25,7 +25,7 @@ module VigilionRails
         after_save :check_scan_#{column}
 
         def remember_#{column}_url
-          @#{column}_old_url = #{column}.url
+          @#{column}_old_url = #{column}.try(:url)
         end
 
         def check_scan_#{column}
