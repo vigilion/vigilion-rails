@@ -9,7 +9,7 @@ GIT
 PATH
   remote: .
   specs:
-    vigilion-rails (0.0.7)
+    vigilion-rails (0.0.8)
       rails (~> 4.2.0)
       vigilion (~> 0.1.0)
 
@@ -137,7 +137,7 @@ GEM
       rspec-mocks (~> 3.2.0)
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
-    sprockets (3.1.0)
+    sprockets (3.2.0)
       rack (~> 1.0)
     sprockets-rails (2.3.1)
       actionpack (>= 3.0)
