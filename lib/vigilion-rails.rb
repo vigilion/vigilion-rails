@@ -12,20 +12,20 @@ module VigilionRails
         def scan_#{column}!
           key = { model: self.class.name, column: '#{column}', id: id }.to_json
           Vigilion.scan_url(key, #{column}.url)
+          @#{column}_old_url = #{column}.url
           return true
         end
 
         # Vigilion service callback
         def on_scan_#{column} params
           update_attribute('#{options[:scan_column]}', params[:status])
-          @#{column}_old_url = #{column}.url
         end
 
         after_initialize :remember_#{column}_url
         after_save :check_scan_#{column}
 
         def remember_#{column}_url
-          @#{column}_old_url = #{column}.try(:url)
+          @#{column}_old_url = #{column}.try(:url) unless new_record?
         end
 
         def check_scan_#{column}
