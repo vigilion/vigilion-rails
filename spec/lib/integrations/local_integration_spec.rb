@@ -1,6 +1,6 @@
 require "vigilion_rails_helper"
 
-describe VigilionRails::CarrierwaveLocalFileIntegration do
+describe VigilionRails::LocalIntegration do
   describe "#scan" do
     it "calls vigilion scanner" do
       document = CarrierwaveDocument.new
