@@ -42,13 +42,70 @@ When the scan finishes, `model.attachment_scan_results` will be updated.
 
 ## Integrations
 
-vigilion-rails provides carrierwave and paperclip integration out-of-the-box.
-That means that simply adding the `scan_file` command to your model, each time a new file is uploaded, a scanning process will be automatically scheduled.
+vigilion-rails provides paperclip, carrierwave and dragonfly
+integration out-of-the-box. That means that simply adding the
+`scan_file` command to your model, each time a new file is
+uploaded, a scanning process will be automatically scheduled.
+There are two default integration strategies:
+
+### URL integration
+
+It sends `model.attachment.url` to the Vigilion's server. The
+server uses this URL to download the file and perform the
+scanning process. That's why `attachment.url` should be an
+absolute path.
+Use this integration with S3 and other storage services.
+
+This is the default integration, so no additional configuration
+is needed, but you can also explicitly configure it adding the
+following option:
+
+```ruby
+  scan_file :attachment, integration: :url
+```
+
+### Local integration
+
+This integration takes a local file path, reads the content of
+the file and post it to the Vigilion's servers. The server
+creates a temporary file with the content which will be deleted
+after the scanning process is performed.
+
+To configure local integration add the option to the scan_file
+method:
+```ruby
+  scan_file :attachment, integration: :local
+```
+
+### Custom integrations
+
+To support other integrations or custom integrations create a
+new class:
+
+```ruby
+module VigilionRails
+  class CustomIntegration
+    def scan(key, model, column)
+      # Put your custom code here!!!
+      # You can use Vigilion.scan_path or Vigilion.scan_url
+    end
+  end
+end
+```
+
+And put it in place using:
+```ruby
+  scan_file :attachment, integration: :custom
+```
+
+To know how to make direct calls to Vigilion API visit
+https://github.com/vigilion/vigilion-ruby
 
 ## Models and callbacks
 
-Vigilion creates an `on_scan_attachment` callback in your model which
-updates the column `attachment_scan_results` column.
+Vigilion creates an `on_scan_attachment` callback in your model
+which updates the column `attachment_scan_results` column when
+the application receives the scan results from Vigilion.
 
 You can override the scan results column with:
 
@@ -56,5 +113,6 @@ You can override the scan results column with:
   scan_file :attachment, scan_column: "any_column_name"
 ```
 
-You can also replace entirely the `on_scan_attachment` method in your model.
-In that case, you have to implement the logic to handle the scan results.
+You can also replace entirely the `on_scan_attachment` method
+in your model. In that case, you have to implement the logic to
+handle the scan results.
