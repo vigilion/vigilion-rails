@@ -73,7 +73,7 @@ the file and post it to the Vigilion's servers. The server
 creates a temporary file with the content which will be deleted
 after the scanning process is performed.
 
-To configure local integration add the option to the scan_file
+To configure local integration, add the following option to the scan_file
 method:
 ```ruby
   scan_file :attachment, integration: :local
