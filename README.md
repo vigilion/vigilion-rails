@@ -42,18 +42,20 @@ When the scan finishes, `model.attachment_scan_results` will be updated.
 
 ## Integrations
 
-vigilion-rails provides paperclip, carrierwave and dragonfly
-integration out-of-the-box. That means that simply adding the
-`scan_file` command to your model, each time a new file is
-uploaded, a scanning process will be automatically scheduled.
-There are two default integration strategies:
+**vigilion-rails** provides **paperclip**, **carrierwave** and
+**dragonfly** integration out-of-the-box. That means that
+simply adding the `scan_file` command to your model, each time
+a new file is uploaded, a scanning process will be
+automatically scheduled.
+
+Independently of the gem you use to upload files, there are two
+integration strategies:
 
 ### URL integration
 
 It sends `model.attachment.url` to the Vigilion's server. The
 server uses this URL to download the file and perform the
-scanning process. That's why `attachment.url` should be an
-absolute path.
+scanning process. `attachment.url` must be an absolute path.
 Use this integration with S3 and other storage services.
 
 This is the default integration, so no additional configuration
