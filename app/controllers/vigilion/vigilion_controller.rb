@@ -14,12 +14,8 @@ class Vigilion::VigilionController < ActionController::Base
 
 private
   def verify_api_auth
-    unless digest == request.headers["Auth-Hash"]
+    unless Vigilion::HTTP.digest(request.raw_post) == request.headers["Auth-Hash"]
       render json: { message: "unauthorized" }, status: 401
     end
-  end
-
-  def digest
-    Digest::MD5.hexdigest("#{request.raw_post}#{Vigilion::Configuration.secret_access_key}")
   end
 end

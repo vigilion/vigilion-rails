@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/bitzesty/vigilion-ruby
-  revision: 0f885fd072dab253b5388262a4517c368f7f6649
+  revision: f7350624dba8640427863bb21eff15aec05b3787
   specs:
     vigilion (0.1.1)
       faraday
