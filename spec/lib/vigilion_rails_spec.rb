@@ -24,7 +24,7 @@ describe VigilionRails do
       # In a real scenario you also have to wait a random amount of
       # time.
       it "doesn't have scan results before reloading" do
-        Vigilion::Configuration.stubbed_result = "infected"
+        Vigilion::Configuration.loopback_response = "infected"
         document = AgnosticDocument.create
         document.scan_attachment!
 
@@ -32,7 +32,7 @@ describe VigilionRails do
       end
 
       it "has scan results after reloading" do
-        Vigilion::Configuration.stubbed_result = "infected"
+        Vigilion::Configuration.loopback_response = "infected"
         document = AgnosticDocument.create
         document.scan_attachment!
         document.reload

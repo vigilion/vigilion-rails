@@ -6,7 +6,7 @@ module VigilionRails
       Vigilion.configure do |config|
         config.integration = :url
         config.loopback = Rails.env.development? || Rails.env.test?
-        config.stubbed_result = 'clean'
+        config.loopback_response = 'clean'
       end
     end
   end

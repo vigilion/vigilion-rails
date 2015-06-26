@@ -18,7 +18,7 @@ module VigilionRails
           if Vigilion::Configuration.loopback
             logger.info 'vigilion scan request was simulated'
 
-            self.class.find(id).on_scan_#{column} status: Vigilion::Configuration.stubbed_result
+            self.class.find(id).on_scan_#{column} status: Vigilion::Configuration.loopback_response
           else
             #{integration_class}.new.scan key, self, :#{column}
           end
