@@ -2,10 +2,43 @@ require "vigilion_rails_helper"
 
 describe VigilionRails do
   describe "#scan_attachment!" do
-    it "calls vigilion scanner" do
-      document = AgnosticDocument.new
-      expect(Vigilion).to receive(:scan_url)
-      document.scan_attachment!
+    context "without loopback (normal behavior)" do
+      disable_loopback
+
+      it "calls vigilion scanner" do
+        document = AgnosticDocument.new
+        expect(Vigilion).to receive(:scan_url)
+        document.scan_attachment!
+      end
+    end
+
+    context "with loopback (local environments and tests)" do
+      it "doesn't call vigilion scanner" do
+        document = AgnosticDocument.create
+        expect(Vigilion).not_to receive(:scan_url)
+        document.scan_attachment!
+      end
+
+      # We want to simulate the real behavior so we don't provide
+      # the scan results without reloading the model.
+      # In a real scenario you also have to wait a random amount of
+      # time.
+      it "doesn't have scan results before reloading" do
+        Vigilion::Configuration.stubbed_result = "infected"
+        document = AgnosticDocument.create
+        document.scan_attachment!
+
+        expect(document.attachment_scan_results).to eq nil
+      end
+
+      it "has scan results after reloading" do
+        Vigilion::Configuration.stubbed_result = "infected"
+        document = AgnosticDocument.create
+        document.scan_attachment!
+        document.reload
+
+        expect(document.attachment_scan_results).to eq "infected"
+      end
     end
   end
 
@@ -18,6 +51,8 @@ describe VigilionRails do
   end
 
   context "on save" do
+    disable_loopback
+
     context "with a new instance" do
       let(:document){ AgnosticDocument.new(attachment_url: 'http://something') }
 

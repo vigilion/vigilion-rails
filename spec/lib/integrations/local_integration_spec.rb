@@ -1,6 +1,8 @@
 require "vigilion_rails_helper"
 
 describe VigilionRails::LocalIntegration do
+  disable_loopback
+
   describe "#scan" do
     it "calls vigilion scanner" do
       document = CarrierwaveDocument.new
