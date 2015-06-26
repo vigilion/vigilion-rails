@@ -118,3 +118,33 @@ You can override the scan results column with:
 You can also replace entirely the `on_scan_attachment` method
 in your model. In that case, you have to implement the logic to
 handle the scan results.
+
+## Loopback
+
+Due to the fact that **vigilion** requires an URL to make the
+scanning callback to send the results, there is no sense in
+calling vigilion from a non public location.
+Using a loopback, you can simulate the success or failure of
+a scan in a private location.
+
+By default, the loopback is active in development and test
+environments and disabled in any other environment.
+You can alter the defaults an also alter the default response
+in the initializer:
+
+To disable the loopback on any environment (and therefore
+enable the vigilion call) use:
+```ruby
+  config.loopback = false
+```
+To enable the loopback (and disable the vigilion call) use:
+```ruby
+  config.loopback = true
+```
+
+You can also specify the loopback response:
+```ruby
+  config.loopback_response = 'infected'
+```
+
+(c) 2015 BitZesty Ltd.
