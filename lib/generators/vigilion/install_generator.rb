@@ -6,7 +6,7 @@ Vigilion.configure do |config|
   config.secret_access_key = ENV["VIGILION_SECRET_ACCESS_KEY"]
 
   # Integration strategy (default is :url)
-  # config.integration = :file
+  # config.integration = :local
 
   # By default vigilion will be bypassed in development and test environments.
   # Disable vigilion scanning entirely even in production environments:
