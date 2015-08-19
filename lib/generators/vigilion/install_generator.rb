@@ -12,7 +12,7 @@ Vigilion.configure do |config|
   # Disable vigilion scanning entirely even in production environments:
   # config.loopback = true
   # Enable vigilion scanning even in development and test environments:
-  # (Note that the callback URL won't probably be reached)
+  # (Note that the callback URL probably won't be reached)
   # config.loopback = false
   # Specify different loopback_response (default is 'clean')
   # config.loopback_response = 'infected'
