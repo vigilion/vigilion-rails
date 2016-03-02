@@ -43,6 +43,10 @@ module VigilionRails
             scan_#{column}!
           end
         end
+
+        def clean?
+          #{options[:scan_column]} == "clean"
+        end
       RUBY
     end
   end

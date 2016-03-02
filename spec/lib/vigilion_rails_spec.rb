@@ -1,6 +1,32 @@
 require "vigilion_rails_helper"
 
 describe VigilionRails do
+  describe "#clean?" do
+    context "without scan results" do
+      it "is not clean" do
+        document = AgnosticDocument.new
+        document.attachment_scan_results = nil
+        expect(document).not_to be_clean
+      end
+    end
+
+    context "with infected scan results" do
+      it "is not clean" do
+        document = AgnosticDocument.new
+        document.attachment_scan_results = "infected"
+        expect(document).not_to be_clean
+      end
+    end
+
+    context "with clean scan results" do
+      it "is clean" do
+        document = AgnosticDocument.new
+        document.attachment_scan_results = "clean"
+        expect(document).to be_clean
+      end
+    end
+  end
+
   describe "#scan_attachment!" do
     context "without loopback (normal behavior)" do
       disable_loopback
