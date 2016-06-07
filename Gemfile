@@ -16,6 +16,3 @@ gemspec
 gem 'carrierwave'
 gem 'paperclip'
 gem 'dragonfly'
-
-# remove after deploying:
-gem "vigilion", git: "https://github.com/bitzesty/vigilion-ruby"
