@@ -23,11 +23,10 @@ Bundler::GemHelper.install_tasks
 
 require "rake/testtask"
 
-Rake::TestTask.new(:test) do |t|
-  t.libs << "lib"
-  t.libs << "test"
-  t.pattern = "test/**/*_test.rb"
-  t.verbose = false
-end
+begin
+  require 'rspec/core/rake_task'
+  RSpec::Core::RakeTask.new(:spec)
 
-task default: :test
+  task default: :spec
+rescue LoadError
+end

@@ -12,6 +12,11 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
+group :test do
+  gem 'test_after_commit'
+  gem 'vigilion'
+end
+
 # dummy app dependencies:
 gem 'carrierwave'
 gem 'paperclip'
