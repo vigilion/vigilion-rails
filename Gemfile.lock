@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    vigilion-rails (1.0.1)
+    vigilion-rails (1.0.2)
       rails (>= 4.2.0)
       vigilion (~> 1.0.3)
 
