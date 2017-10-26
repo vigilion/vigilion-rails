@@ -18,6 +18,6 @@ group :test do
 end
 
 # dummy app dependencies:
-gem 'carrierwave'
+gem 'carrierwave', ">= 1.2.1"
 gem 'paperclip'
 gem 'dragonfly'
