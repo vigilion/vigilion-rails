@@ -13,11 +13,11 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 
 group :test do
-  gem 'test_after_commit'
+  gem 'test_after_commit', '>= 1.1.0'
   gem 'vigilion'
 end
 
 # dummy app dependencies:
-gem 'carrierwave', ">= 1.2.1"
-gem 'paperclip'
-gem 'dragonfly'
+gem 'carrierwave', '>= 1.2.1'
+gem 'paperclip', '>= 4.2.2'
+gem 'dragonfly', '>= 1.0.10'
