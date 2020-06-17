@@ -20,4 +20,4 @@ end
 # dummy app dependencies:
 gem 'carrierwave', ">= 1.2.1"
 gem 'paperclip'
-gem 'dragonfly'
+gem 'dragonfly', '>= 1.0.10'
