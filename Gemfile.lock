@@ -54,7 +54,7 @@ GEM
     cocaine (0.5.7)
       climate_control (>= 0.0.3, < 1.0)
     concurrent-ruby (1.0.5)
-    crass (1.0.2)
+    crass (1.0.6)
     diff-lcs (1.3)
     dragonfly (1.0.10)
       addressable (~> 2.3)
@@ -76,7 +76,7 @@ GEM
       activesupport (>= 4.2.0)
     i18n (0.9.0)
       concurrent-ruby (~> 1.0)
-    loofah (2.1.1)
+    loofah (2.7.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -85,12 +85,12 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_mime (1.0.1)
-    mini_portile2 (2.3.0)
+    mini_portile2 (2.4.0)
     minitest (5.10.3)
     multi_json (1.11.1)
     multipart-post (2.0.0)
-    nokogiri (1.8.1)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.10.10)
+      mini_portile2 (~> 2.4.0)
     paperclip (4.2.2)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -166,12 +166,12 @@ PLATFORMS
 
 DEPENDENCIES
   carrierwave (>= 1.2.1)
-  dragonfly
+  dragonfly (>= 1.0.10)
   factory_girl_rails
-  paperclip
+  paperclip (>= 4.2.2)
   rspec-rails
   sqlite3
-  test_after_commit
+  test_after_commit (>= 1.1.0)
   vigilion
   vigilion-rails!
 
