@@ -85,12 +85,12 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_mime (1.0.1)
-    mini_portile2 (2.3.0)
+    mini_portile2 (2.4.0)
     minitest (5.10.3)
     multi_json (1.11.1)
     multipart-post (2.0.0)
-    nokogiri (1.8.1)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.10.10)
+      mini_portile2 (~> 2.4.0)
     paperclip (4.2.2)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -166,12 +166,12 @@ PLATFORMS
 
 DEPENDENCIES
   carrierwave (>= 1.2.1)
-  dragonfly
+  dragonfly (>= 1.0.10)
   factory_girl_rails
-  paperclip
+  paperclip (>= 4.2.2)
   rspec-rails
   sqlite3
-  test_after_commit
+  test_after_commit (>= 1.1.0)
   vigilion
   vigilion-rails!
 
