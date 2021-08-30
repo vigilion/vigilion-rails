@@ -32,7 +32,7 @@ module VigilionRails
         end
 
         after_initialize :remember_#{column}_url
-        after_commit :check_scan_#{column}
+        after :store, :check_scan_#{column}
 
         def remember_#{column}_url
           @#{column}_old_url = #{column}.try(:url) unless new_record?
