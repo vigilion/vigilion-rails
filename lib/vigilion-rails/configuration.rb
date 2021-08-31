@@ -7,6 +7,7 @@ module VigilionRails
         config.integration = :url
         config.loopback = Rails.env.development? || Rails.env.test?
         config.loopback_response = 'clean'
+        config.active_job = false
       end
     end
   end

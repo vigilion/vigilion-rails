@@ -119,4 +119,15 @@ describe VigilionRails do
       end
     end
   end
+
+  describe "#active_job" do
+    disable_loopback
+    it "enques a job" do
+      Vigilion::Configuration.active_job = true
+      expect {
+        document = AgnosticDocument.create
+        document.scan_attachment!
+        }.to have_enqueued_job(::VigilionRails::VigilionScanJob)
+    end
+  end
 end

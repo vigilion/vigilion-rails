@@ -20,7 +20,11 @@ module VigilionRails
 
             self.class.find(id).on_scan_#{column} status: Vigilion::Configuration.loopback_response
           else
-            #{integration_class}.new.scan key, self, :#{column}
+            if Vigilion::Configuration.active_job
+              ::VigilionRails::VigilionScanJob.perform_later(#{integration_class}, key, :#{column})
+            else
+              #{integration_class}.new.scan key, self, :#{column}
+            end
           end
           @#{column}_old_url = #{column}.url
           return true
