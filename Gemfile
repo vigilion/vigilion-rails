@@ -17,6 +17,6 @@ group :test do
 end
 
 # dummy app dependencies:
-gem 'carrierwave', '>= 1.2.1'
+gem 'carrierwave', '>= 1.3.2'
 gem 'paperclip', '>= 4.2.2'
 gem 'dragonfly', '>= 1.0.10'
