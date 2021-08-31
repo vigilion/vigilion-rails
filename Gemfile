@@ -13,7 +13,6 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 
 group :test do
-  gem 'test_after_commit', '>= 1.1.0'
   gem 'vigilion'
 end
 
