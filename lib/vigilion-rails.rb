@@ -21,7 +21,7 @@ module VigilionRails
             self.class.find(id).on_scan_#{column} status: Vigilion::Configuration.loopback_response
           else
             if Vigilion::Configuration.active_job
-              ::VigilionRails::VigilionScanJob.perform_later(#{integration_class}.to_s, self.class.name, id, key, '#{column}')
+              ::VigilionRails::VigilionScanJob.set(wait: 60).perform_later(#{integration_class}.to_s, self.class.name, id, key, '#{column}')
             else
               #{integration_class}.new.scan key, self, :#{column}
             end
