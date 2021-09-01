@@ -4,6 +4,7 @@ require 'spec_helper'
 require File.expand_path('../dummy/config/environment', __FILE__)
 require 'rspec/rails'
 require 'helper_methods'
+require 'webmock/rspec'
 
 ActiveRecord::Migration.maintain_test_schema!
 ActiveJob::Base.queue_adapter = :test

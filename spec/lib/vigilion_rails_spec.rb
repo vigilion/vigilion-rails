@@ -121,10 +121,25 @@ describe VigilionRails do
   end
 
   describe "#active_job" do
-    disable_loopback
     it "enques a job" do
-      Vigilion::Configuration.active_job = true
+      pending
+      ActiveJob::Base.queue_adapter = :test
+      ActiveJob::Base.queue_adapter.perform_enqueued_jobs = true
+      stub_request(:post, "https://api.vigilion.com/scans").
+      with(
+        body: "{\"scan\":{\"key\":\"{\\\"model\\\":\\\"AgnosticDocument\\\",\\\"column\\\":\\\"attachment\\\",\\\"id\\\":1}\",\"url\":null}}",
+        headers: {
+        'Accept'=>'*/*',
+        'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+        'Content-Type'=>'application/json',
+        'User-Agent'=>'Vigilion 1.0.4 (x86_64-darwin19, Ruby 2.7.1)',
+        'X-Api-Key'=>'test'
+        }).
+      to_return(status: 200, body: "", headers: {})
       expect {
+        Vigilion::Configuration.loopback = false
+        Vigilion::Configuration.active_job = true
+        Vigilion::Configuration.integration = :url
         document = AgnosticDocument.create
         document.scan_attachment!
         }.to have_enqueued_job(::VigilionRails::VigilionScanJob)
