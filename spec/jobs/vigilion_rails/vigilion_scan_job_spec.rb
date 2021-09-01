@@ -20,7 +20,7 @@ RSpec.describe VigilionRails::VigilionScanJob do
       }).
     to_return(status: 200, body: "", headers: {})
 
-    VigilionRails::VigilionScanJob.perform_later(VigilionRails::UrlIntegration, document.class.name, document.id, key, 'attachment')
+    VigilionRails::VigilionScanJob.perform_later("VigilionRails::UrlIntegration", document.class.name, document.id, key, 'attachment')
     expect(VigilionRails::VigilionScanJob).to have_been_performed
   end
 end

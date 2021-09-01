@@ -4,8 +4,7 @@ module VigilionRails
 
     def perform(integration_class, class_name, id, key, column)
       file = class_name.constantize.find(id)
-      puts integration_class
-      integration_class.new.scan key, file, column.to_sym
+      integration_class.constantize.new.scan key, file, column.to_sym
     end
   end
 end
