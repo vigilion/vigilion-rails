@@ -5,7 +5,7 @@ describe VigilionRails::LocalIntegration do
 
   describe "#scan" do
     it "calls vigilion scanner" do
-      document = CarrierwaveDocument.new
+      document = CarrierwaveDocument.create
       expect(Vigilion).to receive(:scan_path)
       document.scan_attachment!
     end

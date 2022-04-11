@@ -4,6 +4,7 @@ require "vigilion-rails/integrations/local_integration"
 require "vigilion-rails/configuration"
 
 module VigilionRails
+  PENDING_STATUS = 'pending'
 
   module ActiveRecord
     def scan_file column, options={}
@@ -25,6 +26,7 @@ module VigilionRails
             else
               #{integration_class}.new.scan key, self, :#{column}
             end
+            self.class.find(id).send('on_scan_#{column}', status: PENDING_STATUS)
           end
           @#{column}_old_url = #{column}.url
           return true

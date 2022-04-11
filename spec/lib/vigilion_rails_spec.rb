@@ -1,6 +1,8 @@
 require "vigilion_rails_helper"
 
 describe VigilionRails do
+  include ActiveJob::TestHelper
+
   describe "#clean?" do
     context "without scan results" do
       it "is not clean" do
@@ -32,7 +34,7 @@ describe VigilionRails do
       disable_loopback
 
       it "calls vigilion scanner" do
-        document = AgnosticDocument.new
+        document = AgnosticDocument.create
         expect(Vigilion).to receive(:scan_url)
         document.scan_attachment!
       end
@@ -121,28 +123,34 @@ describe VigilionRails do
   end
 
   describe "#active_job" do
-    it "enques a job" do
-      pending
-      ActiveJob::Base.queue_adapter = :test
-      ActiveJob::Base.queue_adapter.perform_enqueued_jobs = true
-      stub_request(:post, "https://api.vigilion.com/scans").
-      with(
-        body: "{\"scan\":{\"key\":\"{\\\"model\\\":\\\"AgnosticDocument\\\",\\\"column\\\":\\\"attachment\\\",\\\"id\\\":1}\",\"url\":null}}",
-        headers: {
-        'Accept'=>'*/*',
-        'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-        'Content-Type'=>'application/json',
-        'User-Agent'=>'Vigilion 1.0.4 (x86_64-darwin19, Ruby 2.7.1)',
-        'X-Api-Key'=>'test'
-        }).
-      to_return(status: 200, body: "", headers: {})
+    before do
+      Vigilion::Configuration.loopback = false
+      Vigilion::Configuration.active_job = true
+      Vigilion::Configuration.integration = :url
+    end
+
+    it "enqueues a job" do
+      document = AgnosticDocument.create
       expect {
-        Vigilion::Configuration.loopback = false
-        Vigilion::Configuration.active_job = true
-        Vigilion::Configuration.integration = :url
-        document = AgnosticDocument.create
         document.scan_attachment!
-        }.to have_enqueued_job(::VigilionRails::VigilionScanJob)
+      }.to have_enqueued_job(::VigilionRails::VigilionScanJob)
+    end
+
+    it 'calls proper integration' do
+      document = AgnosticDocument.create
+      key = { model: document.class.name, column: 'attachment', id: document.id }.to_json
+      expect_any_instance_of(
+        ::VigilionRails::UrlIntegration
+      ).to receive(:scan).with(key, document, :attachment)
+      perform_enqueued_jobs do
+        document.scan_attachment!
+      end
+    end
+
+    it 'sets default status' do
+      document = AgnosticDocument.create
+      document.scan_attachment!
+      expect(document.reload.attachment_scan_results).to eq "pending"
     end
   end
 end
