@@ -2,6 +2,8 @@
 
 This gem helps intergrate the Vigilion malware scanner into your Rails app.
 
+Uses the Ruby API client: https://github.com/vigilion/vigilion-ruby
+
 # License
 
 Vigilion scanner is Copyright © 2021 Bit Zesty. It is free
